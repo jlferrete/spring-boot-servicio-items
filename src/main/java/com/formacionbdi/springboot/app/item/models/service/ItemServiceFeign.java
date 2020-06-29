@@ -12,7 +12,6 @@ import com.formacionbdi.springboot.app.item.models.Item;
 
 
 @Service("serviceFeign")
-@Primary
 public class ItemServiceFeign implements ItemService {
 
 	@Autowired
