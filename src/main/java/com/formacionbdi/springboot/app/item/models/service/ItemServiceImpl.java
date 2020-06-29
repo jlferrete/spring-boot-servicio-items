@@ -28,8 +28,9 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public Item findById(Long id, Integer cantidad) {
 		Map<String, String> pathVariables = new HashMap<String, String>();
-		Producto producto = clienteRest.getForObject("http://localhost:8001/ver/{id}", Producto.class);
-		return null;
+		pathVariables.put("id", id.toString());
+		Producto producto = clienteRest.getForObject("http://localhost:8001/ver/{id}", Producto.class, pathVariables);
+		return new Item(producto, cantidad);
 	}
 
 }
