@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.formacionbdi.springboot.app.item.models.Item;
 import com.formacionbdi.springboot.app.item.models.Producto;
+import com.formacionbdi.springboot.app.item.models.Item;
 
 @Service("serviceRestTemplate")
 public class ItemServiceImpl implements ItemService {
@@ -22,7 +22,8 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public List<Item> findAll() {
 		List<Producto> productos = Arrays.asList(clienteRest.getForObject("http://servicio-productos/listar", Producto[].class));
-		return productos.stream().map(p -> new Item(p , 1)).collect(Collectors.toList());
+		
+		return productos.stream().map(p -> new Item(p, 1)).collect(Collectors.toList());
 	}
 
 	@Override

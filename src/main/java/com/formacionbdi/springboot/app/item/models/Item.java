@@ -1,17 +1,16 @@
 package com.formacionbdi.springboot.app.item.models;
 
+import com.formacionbdi.springboot.app.item.models.Producto;
+
 public class Item {
 
 	private Producto producto;
 	private Integer cantidad;
 
-	
-	
-	
-	public Item() {	}
+	public Item() {
+	}
 
 	public Item(Producto producto, Integer cantidad) {
-		super();
 		this.producto = producto;
 		this.cantidad = cantidad;
 	}
