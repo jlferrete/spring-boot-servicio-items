@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.formacionbdi.springboot.app.item.models.Producto;
+import com.formacionbdi.springboot.app.commons.models.entity.Producto;
 import com.formacionbdi.springboot.app.item.models.Item;
 
 @Service("serviceRestTemplate")
@@ -42,9 +42,7 @@ public class ItemServiceImpl implements ItemService {
 		HttpEntity<Producto> body = new HttpEntity<Producto>(producto);
 		
 		ResponseEntity<Producto> response = clienteRest.exchange("http://servicio-productos/crear", HttpMethod.POST, body, Producto.class);
-		
 		Producto productoResponse = response.getBody();
-		
 		return productoResponse;
 	}
 
@@ -52,9 +50,11 @@ public class ItemServiceImpl implements ItemService {
 	public Producto update(Producto producto, Long id) {
 		Map<String, String> pathVariables = new HashMap<String, String>();
 		pathVariables.put("id", id.toString());
-		HttpEntity<Producto> body = new HttpEntity<Producto>(producto);
+		
+		HttpEntity<Producto> body= new HttpEntity<Producto>(producto);
 		ResponseEntity<Producto> response = clienteRest.exchange("http://servicio-productos/editar/{id}", 
-				HttpMethod.PUT, body, Producto.class , pathVariables);
+				HttpMethod.PUT, body, Producto.class, pathVariables);
+		
 		return response.getBody();
 	}
 
